@@ -7,7 +7,7 @@ const Timer = () => {
     const [minutes, setMinutes] = useState(50);
 
     const [isActive, setIsActive] = useState(false);
-
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
     // pomodoro, short break, long break
     const [mode, setMode] = useState("pomodoro");
 
@@ -36,10 +36,8 @@ const Timer = () => {
 
     //countdown
     useEffect(() => {
-        let interval = null;
-
         if (isActive) {
-            interval = setInterval(() => {
+            intervalRef.current = setInterval(() => {
                 if (seconds === 0) {
                     if (minutes === 0) {
                         // Timer selesai
@@ -63,10 +61,10 @@ const Timer = () => {
                 }
             }, 1000);
         } else if (!isActive && seconds !== 0) {
-            clearInterval(interval);
+            clearInterval(intervalRef.current!);
         }
 
-        return () => clearInterval(interval);
+        return () => clearInterval(intervalRef.current!);
     }, [isActive, minutes, seconds]); // Dependency array
 
     return (
