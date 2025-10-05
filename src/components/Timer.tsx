@@ -77,7 +77,7 @@ const Timer = () => {
                     <button onClick={() => switchMode("break")} className={`px-4 py-2 rounded-full font-semibold ${mode === "break" ? "bg-yellow-600 text-white" : "bg-gray-700 text-gray-400"}`}>Break</button>
                 </div>
                 <div className="text-8xl font-extrabold mb-12">
-                    <span>{minutes < 10 ? `0{$minutes}` : minutes}</span>:<span>{seconds < 10 ? `0${seconds}` : seconds}</span>
+                    <span>{minutes < 10 ? `0${minutes}` : minutes}</span>:<span>{seconds < 10 ? `0${seconds}` : seconds}</span>
                 </div>
 
                 <div className="flex space-x-4">
